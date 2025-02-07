@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraCare - Community Issue Tracker</title>
+    <link rel="stylesheet" href="statuscss.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            🏛️ InfraCare
+        </a>
+        <div class="nav-links">
+            <a href="/infracare-landing.html">Home</a>
+            <a href="/report/report.html">Report Issue</a>
+            <a href="#">Status Page</a>
+            <a href="#">Community</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Issue Status</h1>
+            <div class="search-filter">
+                <input type="text" class="search-input" placeholder="Search Reports">
+                <button class="filter-button">Filter by Status ▾</button>
+                <button class="add-issue-btn" onclick="showModal()">Report Issue</button>
+            </div>
+        </div>
+
+        <div class="issues-grid" id="issuesGrid">
+            <!-- Issues will be dynamically added here -->
+        </div>
+    </main>
+
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <h2>Report New Issue</h2>
+            <form class="modal-form" onsubmit="submitIssue(event)">
+                <input type="text" placeholder="Issue Title" required>
+                <textarea placeholder="Issue Description" required></textarea>
+                <button type="submit">Submit Report</button>
+                <button type="button" onclick="hideModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Twitter">📱</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data
+        const issues = [
+            {
+                title: 'Street Light Outage',
+                status: 'pending',
+                reportDate: '2023-10-01',
+                update: 'No updates yet.'
+            },
+            {
+                title: 'Pothole on Main St',
+                status: 'progress',
+                reportDate: '2023-09-25',
+                update: 'Repair crew dispatched.'
+            },
+            {
+                title: 'Graffiti Removal',
+                status: 'resolved',
+                reportDate: '2023-09-20',
+                update: 'Resolved: 2023-09-22'
+            }
+        ];
+
+        // Function to create issue cards
+        function createIssueCard(issue) {
+            return `
+                <div class="issue-card">
+                    <div class="issue-title">${issue.title}</div>
+                    <div class="issue-status status-${issue.status}">Status: ${issue.status.charAt(0).toUpperCase() + issue.status.slice(1)}</div>
+                    <div class="issue-date">Reported on: ${issue.reportDate}</div>
+                    <div class="issue-update">${issue.update}</div>
+                </div>
+            `;
+        }
+
+        // Function to render all issues
+        function renderIssues() {
+            const issuesGrid = document.getElementById('issuesGrid');
+            issuesGrid.innerHTML = issues.map(issue => createIssueCard(issue)).join('');
+        }
+
+        // Function to show modal
+        function showModal() {
+            document.getElementById('reportModal').style.display = 'block';
+        }
+
+        // Function to hide modal
+        function hideModal() {
+            document.getElementById('reportModal').style.display = 'none';
+        }
+
+        // Function to submit new issue
+        function submitIssue(event) {
+            event.preventDefault();
+            const form = event.target;
+            const newIssue = {
+                title: form.elements[0].value,
+                status: 'pending',
+                reportDate: new Date().toISOString().split('T')[0],
+                update: 'No updates yet.'
+            };
+            issues.unshift(newIssue);
+            renderIssues();
+            hideModal();
+            form.reset();
+        }
+
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredIssues = issues.filter(issue => 
+                issue.title.toLowerCase().includes(searchTerm) ||
+                issue.update.toLowerCase().includes(searchTerm)
+            );
+            const issuesGrid = document.getElementById('issuesGrid');
+            issuesGrid.innerHTML = filteredIssues.map(issue => createIssueCard(issue)).join('');
+        });
+
+        // Initial render
+        renderIssues();
+    </script>
+</body>
+</html>
