@@ -8,11 +8,11 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">
+        <a href="../index.html" class="logo">
             🏛️ InfraCare
         </a>
         <div class="nav-links">
-            <a href="/infracare-landing.html">Home</a>
+            <a href="../index.html">Home</a>
             <a href="/report/report.html">Report Issue</a>
             <a href="#">Status Page</a>
             <a href="#">Community</a>
@@ -24,7 +24,15 @@
             <h1>Issue Status</h1>
             <div class="search-filter">
                 <input type="text" class="search-input" placeholder="Search Reports">
-                <button class="filter-button">Filter by Status ▾</button>
+                <div class="filter-container">
+                    <button class="filter-button" onclick="toggleFilter()">Filter by Status ▾</button>
+                    <div class="filter-dropdown" id="filterDropdown">
+                        <div class="filter-option" onclick="filterIssues('all')">All Issues</div>
+                        <div class="filter-option" onclick="filterIssues('pending')">Pending</div>
+                        <div class="filter-option" onclick="filterIssues('progress')">In Progress</div>
+                        <div class="filter-option" onclick="filterIssues('resolved')">Resolved</div>
+                    </div>
+                </div>
                 <button class="add-issue-btn" onclick="showModal()">Report Issue</button>
             </div>
         </div>
@@ -84,6 +92,32 @@
             }
         ];
 
+        let currentFilter = 'all';
+
+        // Function to toggle filter dropdown
+        function toggleFilter() {
+            const dropdown = document.getElementById('filterDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.filter-button')) {
+                const dropdown = document.getElementById('filterDropdown');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to filter issues
+        function filterIssues(status) {
+            currentFilter = status;
+            const dropdown = document.getElementById('filterDropdown');
+            dropdown.style.display = 'none';
+            renderIssues();
+        }
+
         // Function to create issue cards
         function createIssueCard(issue) {
             return `
@@ -99,7 +133,13 @@
         // Function to render all issues
         function renderIssues() {
             const issuesGrid = document.getElementById('issuesGrid');
-            issuesGrid.innerHTML = issues.map(issue => createIssueCard(issue)).join('');
+            let filteredIssues = issues;
+            
+            if (currentFilter !== 'all') {
+                filteredIssues = issues.filter(issue => issue.status === currentFilter);
+            }
+            
+            issuesGrid.innerHTML = filteredIssues.map(issue => createIssueCard(issue)).join('');
         }
 
         // Function to show modal
