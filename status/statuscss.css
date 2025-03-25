@@ -26,6 +26,16 @@
                 text-decoration: none;
             }
 
+            .logo svg {
+                width: 24px;
+                height: 24px;
+                fill: currentColor;
+            }
+
+            .logo span {
+                margin-left: 8px;
+            }
+
             .nav-links {
                 display: flex;
                 gap: 2rem;
@@ -40,6 +50,7 @@
                 padding: 2rem;
                 max-width: 1200px;
                 margin: 0 auto;
+                padding-bottom: 80px;
             }
 
             .header {
@@ -158,9 +169,13 @@
             }
 
             .footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
                 background-color: #f8f9fa;
-                padding: 1.5rem 2rem;
-                margin-top: 3rem;
+                padding: 1rem 0;
+                box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
             }
 
             .footer-content {
@@ -169,6 +184,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                padding: 0 2rem;
             }
 
             .footer-links {
@@ -179,12 +195,21 @@
             .footer-links a {
                 color: #666;
                 text-decoration: none;
-                font-size: 0.875rem;
+                margin-right: 1.5rem;
+            }
+
+            .footer-links a:hover {
+                color: #333;
             }
 
             .social-links {
                 display: flex;
                 gap: 1rem;
+            }
+
+            .social-links a {
+                margin-left: 1rem;
+                text-decoration: none;
             }
 
             .add-issue-btn {
