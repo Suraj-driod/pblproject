@@ -189,27 +189,21 @@ body {
     gap: 2rem;
 }
 
-.footer-section h4 {
+.footer-section h3 {
     margin-bottom: 1rem;
     color: #333;
 }
 
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section ul li a {
-    color: #666;
+.footer-section p a,
+.footer-section a {
+    color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.footer-section ul li a:hover {
-    color: #333;
+.footer-section p a:hover,
+.footer-section a:hover {
+    color: #666;
 }
 
 /* Responsive styles */
