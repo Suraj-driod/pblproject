@@ -34,7 +34,7 @@
                         <div class="filter-option" onclick="filterIssues('resolved')">Resolved</div>
                     </div>
                 </div>
-                <button class="add-issue-btn" onclick="showModal()">Report Issue</button>
+                <button class="add-issue-btn" onclick="window.location.href='../report/report.html'">Report Issue</button>
             </div>
         </div>
 
@@ -42,18 +42,6 @@
             <!-- Issues will be dynamically added here -->
         </div>
     </main>
-
-    <div class="modal" id="reportModal">
-        <div class="modal-content">
-            <h2>Report New Issue</h2>
-            <form class="modal-form" onsubmit="submitIssue(event)">
-                <input type="text" placeholder="Issue Title" required>
-                <textarea placeholder="Issue Description" required></textarea>
-                <button type="submit">Submit Report</button>
-                <button type="button" onclick="hideModal()">Cancel</button>
-            </form>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="footer-content">
@@ -141,32 +129,6 @@
             }
             
             issuesGrid.innerHTML = filteredIssues.map(issue => createIssueCard(issue)).join('');
-        }
-
-        // Function to show modal
-        function showModal() {
-            document.getElementById('reportModal').style.display = 'block';
-        }
-
-        // Function to hide modal
-        function hideModal() {
-            document.getElementById('reportModal').style.display = 'none';
-        }
-
-        // Function to submit new issue
-        function submitIssue(event) {
-            event.preventDefault();
-            const form = event.target;
-            const newIssue = {
-                title: form.elements[0].value,
-                status: 'pending',
-                reportDate: new Date().toISOString().split('T')[0],
-                update: 'No updates yet.'
-            };
-            issues.unshift(newIssue);
-            renderIssues();
-            hideModal();
-            form.reset();
         }
 
         // Search functionality
