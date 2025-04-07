@@ -50,6 +50,16 @@ body {
     color: #666;
 }
 
+.signup-btn {
+    background: #000;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-right: 0.1rem;
+}
+
 .login-btn {
     background: #000;
     color: white;
@@ -59,6 +69,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.signup-btn:hover,
 .login-btn:hover {
     background: #333;
 }
