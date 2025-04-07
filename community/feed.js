@@ -3,52 +3,52 @@ const posts = [
     {
         id: 1,
         username: "Alex Johnson",
-        avatar: "https://via.placeholder.com/40",
+        avatar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="avatar-svg"><path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" /></svg>',
         timestamp: "2 hours ago",
         title: "Road Damage on Main Street",
         description: "Large pothole causing traffic issues and potential damage to vehicles.",
         location: "Downtown",
         status: "in-progress",
-        image: "https://via.placeholder.com/300x200",
+        image: "../files/placeholderimg.jpg",
         upvotes: 32,
         comments: 8
     },
     {
         id: 2,
         username: "Sarah Williams",
-        avatar: "https://via.placeholder.com/40",
+        avatar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="avatar-svg"><path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" /></svg>',
         timestamp: "5 hours ago",
         title: "Water Supply Issue",
         description: "No water supply in the area for the past 24 hours.",
         location: "West End",
         status: "resolved",
-        image: "https://via.placeholder.com/300x200",
+        image: "../files/placeholderimg.jpg",
         upvotes: 45,
         comments: 12
     },
     {
         id: 3,
         username: "Mike Chen",
-        avatar: "https://via.placeholder.com/40",
+        avatar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="avatar-svg"><path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" /></svg>',
         timestamp: "1 day ago",
         title: "Garbage Collection Delay",
         description: "Garbage hasn't been collected for 3 days in our neighborhood.",
         location: "North District",
         status: "in-progress",
-        image: "https://via.placeholder.com/300x200",
+        image: "../files/placeholderimg.jpg",
         upvotes: 28,
         comments: 5
     },
     {
         id: 4,
         username: "Emma Davis",
-        avatar: "https://via.placeholder.com/40",
+        avatar: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="avatar-svg"><path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" /></svg>',
         timestamp: "3 days ago",
         title: "Street Light Outage",
         description: "Multiple street lights not working on Oak Avenue.",
         location: "East Side",
         status: "resolved",
-        image: "https://via.placeholder.com/300x200",
+        image: "../files/placeholderimg.jpg",
         upvotes: 15,
         comments: 3
     }
@@ -123,7 +123,9 @@ function renderPosts(postsToRender) {
         postElement.innerHTML = `
             <div class="post-header">
                 <div class="user-info">
-                    <img src="${post.avatar}" alt="User Avatar" class="avatar">
+                    <div class="avatar">
+                        ${post.avatar}
+                    </div>
                     <div class="user-details">
                         <span class="username">${post.username}</span>
                         <span class="post-time">${post.timestamp}</span>
