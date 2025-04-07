@@ -25,8 +25,8 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 350px;
-    margin-top: 80px; /* Adjust this value based on your navbar height */
-    padding: 0 20px;
+    margin-top: 90px; /* Adjust this value based on your navbar height */
+    padding: 0 0px;
 }
 
 /* Logo Styling */
@@ -75,7 +75,7 @@ button:hover {
 
 /* Signup Link */
 .signup-link {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .signup-link a {
@@ -129,7 +129,7 @@ button:hover {
     color: #333;
     border: 1px solid #ddd;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 5px;
@@ -221,7 +221,7 @@ button:hover {
 /* Style for input fields to maintain clean look */
 .input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     margin-bottom: 1rem;
