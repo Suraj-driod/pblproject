@@ -29,25 +29,8 @@
     </nav>
 
     <div class="community-container">
-        <div class="sidebar">
-            <div class="filters">
-                <h3>Filters</h3>
-                <div class="filter-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" placeholder="Enter location">
-                </div>
-                <div class="filter-group">
-                    <label for="issue-type">Issue Type</label>
-                    <select id="issue-type">
-                        <option value="">All Issues</option>
-                        <option value="road">Road Damage</option>
-                        <option value="water">Water Supply</option>
-                        <option value="electricity">Electricity</option>
-                        <option value="sanitation">Sanitation</option>
-                    </select>
-                </div>
-                <button class="apply-filters">Apply Filters</button>
-            </div>
+        <div class="filter-bar-container">
+            <div class="filter-bar"></div>
         </div>
 
         <div class="feed">
@@ -115,5 +98,7 @@
             <p><a href="https://www.x.com/">Twitter</a></p>
         </div>
     </footer>
+
+    <script src="feed.js"></script>
 </body>
 </html> 
