@@ -57,7 +57,7 @@ body {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    margin-right: 0.1rem;
+    margin-left: 29rem;
 }
 
 .login-btn {
@@ -67,6 +67,7 @@ body {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    margin-left: 1rem;
 }
 
 .signup-btn:hover,
