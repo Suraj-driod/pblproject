@@ -56,12 +56,11 @@ const posts = [
 
 // Filter types
 const filters = [
-    { id: 'nearby', icon: '🧭', label: 'Nearby' },
-    { id: 'popular', icon: '🔥', label: 'Popular' },
-    { id: 'high-demand', icon: '📈', label: 'High Demand' },
+    { id: 'nearby', icon: '📍', label: 'Nearby' },
+    { id: 'trending', icon: '🔥', label: 'Trending' },
     { id: 'recent', icon: '🕒', label: 'Recent' },
     { id: 'resolved', icon: '✅', label: 'Resolved' },
-    { id: 'in-progress', icon: '🏗️', label: 'In Progress' }
+    { id: 'in-progress', icon: '🔄', label: 'In Progress' }
 ];
 
 // Function to create filter buttons
@@ -88,11 +87,8 @@ function filterPosts(filterType) {
         case 'nearby':
             filteredPosts.sort((a, b) => a.location.localeCompare(b.location));
             break;
-        case 'popular':
-            filteredPosts.sort((a, b) => b.upvotes - a.upvotes);
-            break;
-        case 'high-demand':
-            filteredPosts.sort((a, b) => b.comments - a.comments);
+        case 'trending':
+            filteredPosts.sort((a, b) => (b.upvotes + b.comments) - (a.upvotes + a.comments));
             break;
         case 'recent':
             filteredPosts.sort((a, b) => {
