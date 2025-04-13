@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk - Jansuvidha</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 512 512"><path d="M331.8 224.1c28.29 0 54.88 10.99 74.86 30.97l19.59 19.59c40.01-17.74 71.25-53.3 81.62-96.65c5.725-23.92 5.34-47.08 .2148-68.4c-2.613-10.88-16.43-14.51-24.34-6.604l-68.9 68.9h-75.6V97.2l68.9-68.9c7.912-7.912 4.275-21.73-6.604-24.34c-21.32-5.125-44.48-5.51-68.4 .2148c-55.3 13.23-98.39 60.22-107.2 116.4C224.5 128.9 224.2 137 224.3 145l82.78 82.86C315.2 225.1 323.5 224.1 331.8 224.1z"></path></svg>
+            <span>Jansuvidha</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="maintenance.html">How It Works</a>
+            <a href="maintenance.html">FAQ</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="../login/signup.html" class="signup-btn">Sign Up</a>
+            <a href="login/login.html" class="login-btn">Log in</a>
+            <div class="user-menu">
+                <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="user-profile.html">
+                        <i class="fas fa-user"></i>
+                        My Profile
+                    </a>
+                    <a href="user-profile.html#reports">
+                        <i class="fas fa-file-alt"></i>
+                        My Reports
+                    </a>
+                    <a href="user-profile.html#settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                    <hr>
+                    <a href="login/login.html" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="help-desk-container">
+        <div class="help-header">
+            <h1>How can we help you?</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search for help...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <div class="quick-link-card">
+                <i class="fas fa-book"></i>
+                <h3>Knowledge Base</h3>
+                <p>Find detailed articles and guides</p>
+            </div>
+            <div class="quick-link-card">
+                <i class="fas fa-question-circle"></i>
+                <h3>FAQs</h3>
+                <p>Common questions and answers</p>
+            </div>
+            <div class="quick-link-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Submit Ticket</h3>
+                <p>Create a support ticket</p>
+            </div>
+            <div class="quick-link-card">
+                <i class="fas fa-comments"></i>
+                <h3>Live Chat</h3>
+                <p>Chat with our support team</p>
+            </div>
+        </div>
+
+        <div class="help-sections">
+            <div class="help-section">
+                <h2>Popular Articles</h2>
+                <div class="article-list">
+                    <a href="#" class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>How to submit a report</span>
+                    </a>
+                    <a href="#" class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Tracking your report status</span>
+                    </a>
+                    <a href="#" class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Understanding priority levels</span>
+                    </a>
+                    <a href="#" class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Photo submission guidelines</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <h2>Common Issues</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does it take to process a report?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Report processing typically takes 24-48 hours. Priority issues may be handled sooner.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What information should I include in my report?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Include clear photos, location details, and a brief description of the infrastructure issue.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How can I check my report status?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            You can check your report status in the "My Reports" section of your profile.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Still need help?</h2>
+            <div class="contact-options">
+                <a href="#" class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Support</h3>
+                    <p>Get help within 24 hours</p>
+                </a>
+                <a href="#" class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone Support</h3>
+                    <p>Available 9 AM - 6 PM</p>
+                </a>
+                <a href="#" class="contact-card">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>Live Chat</h3>
+                    <p>Instant support</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Report : Jansuvidha</h3>
+            <p>Serving since 2025</p>
+        </div>
+        <div class="footer-section">
+            <h3>Community</h3>
+            <a href="./community/feed.html">Community Feed</a>
+            <a href="contact/contact.html">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h3>Support Center</h3>
+            <a href="help-desk.html">Help Desk</a>
+        </div>
+        <div class="footer-section">
+            <h3>Connect with us</h3>
+            <a href="https://www.instagram.com/">Instagram</a>
+            <p><a href="https://www.x.com/">Twitter</a></p>
+        </div>
+        <div class="footer-section">
+            <h3>Administration</h3>
+            <a href="admin-login.html" class="admin-link">Government Portal</a>
+            <p><small>For authorized personnel only</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                icon.style.transform = answer.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0)';
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -38,6 +38,7 @@ body {
 .nav-links {
     display: flex;
     gap: 2rem;
+    margin-right: auto;
 }
 
 .nav-links a {
@@ -57,7 +58,7 @@ body {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    margin-left: 29rem;
+    margin-left: 1rem;
 }
 
 .login-btn {
@@ -68,6 +69,9 @@ body {
     text-decoration: none;
     transition: background-color 0.3s ease;
     margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .signup-btn:hover,
@@ -347,6 +351,127 @@ body {
 
 .slide-indicator:hover {
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+.admin-link {
+    color: #000;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    /* border: 1px solid #000; */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.admin-link:hover {
+    background: #000;
+    color: white;
+}
+
+.user-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #000;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Add padding to create hoverable area */
+.user-menu::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: transparent;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Keep dropdown visible when hovering over it */
+.user-dropdown:hover {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 16px;
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    transform: rotate(45deg);
+    box-shadow: -2px -2px 4px rgba(0,0,0,0.05);
+}
+
+.user-dropdown a {
+    color: #000;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.user-dropdown a:hover {
+    background-color: #f5f5f5;
+}
+
+.user-dropdown hr {
+    margin: 0.5rem 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.user-dropdown i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Add styles for the auth-buttons container */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
 }
 
 

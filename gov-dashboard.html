@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Dashboard - Issue Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add custom dashboard styles -->
+    <style>
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .issue-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .issue-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-progress {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-resolved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .issue-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+
+        .issue-details {
+            margin-top: 1rem;
+        }
+
+        .issue-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .map-container {
+            height: 400px;
+            width: 100%;
+            background: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+        }
+
+        .custom-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .custom-marker.pending {
+            color: #ff9800;
+        }
+
+        .custom-marker.in-progress {
+            color: #2196f3;
+        }
+
+        .custom-marker.resolved {
+            color: #4caf50;
+        }
+
+        /* MapBox popup customization */
+        .mapboxgl-popup {
+            max-width: 200px;
+        }
+
+        .mapboxgl-popup-content {
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .mapboxgl-popup-close-button {
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        /* Add loading state */
+        .map-container::before {
+            content: 'Loading map...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .map-container.loading::before {
+            display: block;
+        }
+    </style>
+    <!-- Add these in the <head> section -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script>
+        console.log('Mapbox GL JS loaded:', typeof mapboxgl !== 'undefined');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gov Dashboard</a>
+        <div class="nav-links">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#reports">Reports</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#settings">Settings</a>
+        </div>
+        <div class="user-profile">
+            <span class="user-name">Admin Name</span>
+            <a href="#logout" class="login-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Issue Management Dashboard</h1>
+            <button class="btn btn-primary">Export Report</button>
+        </div>
+
+        <div class="stats-overview">
+            <div class="stat-box">
+                <div class="stat-number">127</div>
+                <div class="stat-label">Total Reports</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">45</div>
+                <div class="stat-label">In Progress</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">82</div>
+                <div class="stat-label">Resolved</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Avg. Response Time</div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map" style="width: 100%; height: 100%; position: relative;"></div>
+            <div id="map-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 10px; border-radius: 4px; display: none;">
+                Loading map...
+            </div>
+            <div id="map-error" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fee; color: #c00; padding: 10px; border-radius: 4px; display: none;">
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h2>Filters</h2>
+            <div class="filter-group">
+                <select class="filter-input" id="issueType">
+                    <option value="">Issue Type</option>
+                    <option value="infrastructure">Infrastructure</option>
+                    <option value="sanitation">Sanitation</option>
+                    <option value="safety">Safety</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-input" id="area">
+                    <option value="">Select Area</option>
+                    <option value="north">North District</option>
+                    <option value="south">South District</option>
+                    <option value="east">East District</option>
+                    <option value="west">West District</option>
+                </select>
+                <select class="filter-input" id="status">
+                    <option value="">Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+                <input type="date" class="filter-input" id="dateFilter" placeholder="Select Date">
+            </div>
+        </div>
+
+        <div class="issues-grid">
+            <!-- Sample Issue Card -->
+            <div class="issue-card">
+                <span class="issue-status status-progress">In Progress</span>
+                <h3>Road Maintenance Required</h3>
+                <img src="sample-image.jpg" alt="Issue Image" class="issue-image">
+                <div class="issue-details">
+                    <p><strong>Location:</strong> 123 Main Street, North District</p>
+                    <p><strong>Reported By:</strong> shivam</p>
+                    <p><strong>Description:</strong> Large pothole causing traffic issues</p>
+                </div>
+                <div class="issue-meta">
+                    <span><i class="far fa-clock"></i> Reported: 2h ago</span>
+                    <span><i class="fas fa-map-marker-alt"></i> 2.5 km away</span>
+                </div>
+            </div>
+            <!-- More issue cards would be dynamically generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        if (!sessionStorage.getItem('isAdminAuthenticated')) {
+            window.location.href = 'admin-login.html';
+        }
+
+        // Add logout functionality
+        document.querySelector('.login-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.removeItem('isAdminAuthenticated');
+            window.location.href = 'index.html';
+        });
+
+        // Add this before any other scripts
+        function showMapError(message) {
+            const errorDiv = document.getElementById('map-error');
+            if (errorDiv) {
+                errorDiv.textContent = `Map Error: ${message}`;
+                errorDiv.style.display = 'block';
+            }
+            console.error('Map Error:', message);
+        }
+
+        function showMapLoading(show) {
+            const loadingDiv = document.getElementById('map-loading');
+            if (loadingDiv) {
+                loadingDiv.style.display = show ? 'block' : 'none';
+            }
+        }
+
+        function initMap() {
+            try {
+                // Show loading state
+                showMapLoading(true);
+                
+                // Check if mapboxgl is available
+                if (typeof mapboxgl === 'undefined') {
+                    throw new Error('Mapbox GL JS is not loaded');
+                }
+
+                // Check if map container exists
+                const mapContainer = document.getElementById('map');
+                if (!mapContainer) {
+                    throw new Error('Map container not found');
+                }
+
+                // Log container dimensions
+                console.log('Map container dimensions:', 
+                    mapContainer.offsetWidth, 
+                    mapContainer.offsetHeight
+                );
+
+                // Set access token
+                mapboxgl.accessToken = '77bbe0dcb918870b23902e84530c2ac8';
+
+                // Create map
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v12',
+                    center: [78.9629, 20.5937], // Center on India
+                    zoom: 4
+                });
+
+                // Add load handler
+                map.on('load', () => {
+                    console.log('Map loaded successfully');
+                    showMapLoading(false);
+                });
+
+                // Add error handler
+                map.on('error', (e) => {
+                    showMapError(e.error.message || 'Error loading map');
+                    console.error('Mapbox error:', e);
+                });
+
+                // Add style load error handler
+                map.on('styledata', (e) => {
+                    if (map.loaded() && !map.isStyleLoaded()) {
+                        showMapError('Error loading map style');
+                    }
+                });
+
+            } catch (error) {
+                showMapError(error.message);
+                console.error('Map initialization error:', error);
+            }
+        }
+
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMap);
+        } else {
+            initMap();
+        }
+
+        // Add filter functionality
+        document.querySelectorAll('.filter-input').forEach(filter => {
+            filter.addEventListener('change', function() {
+                // Implement filter logic here
+            });
+        });
+    </script>
+    <!-- Add Google Maps API script with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao&libraries=places&callback=initMap" async defer></script>
+</body>
+</html> 

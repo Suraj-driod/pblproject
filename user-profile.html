@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Jansuvidha</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #1976D2;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: #fff;
+            --border-color: #e0e0e0;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --danger-color: #F44336;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        /* Profile Sidebar */
+        .profile-sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .profile-avatar {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .profile-avatar img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .change-photo-btn {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .change-photo-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .profile-info {
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+            background: var(--bg-color);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Main Content Area */
+        .profile-main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .profile-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--bg-color);
+        }
+
+        /* Report History */
+        .report-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .report-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .report-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-pending { background: #FFF3E0; color: #E65100; }
+        .status-progress { background: #E3F2FD; color: #1565C0; }
+        .status-resolved { background: #E8F5E9; color: #2E7D32; }
+
+        .report-content {
+            margin-top: 1rem;
+        }
+
+        .report-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .report-date {
+            color: #999;
+            font-size: 0.875rem;
+        }
+
+        /* Settings Form */
+        .settings-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .save-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                position: static;
+            }
+        }
+
+        .user-menu {
+            position: relative;
+            margin-left: auto;
+            padding-left: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-width: 200px;
+            padding: 0.5rem 0;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-dropdown a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-dropdown i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .user-dropdown hr {
+            margin: 0.5rem 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+
+        /* Update navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <svg viewBox="0 0 512 512"><!-- Your existing logo SVG --></svg>
+            <span>Jansuvidha</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="report/report.html">Report Issue</a>
+            <a href="status/status.html">Check Status</a>
+            <a href="community/feed.html">Community</a>
+            
+            <!-- Add this user menu -->
+            <div class="user-menu">
+                <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="user-profile.html">
+                        <i class="fas fa-user"></i>
+                        My Profile
+                    </a>
+                    <a href="user-profile.html#reports">
+                        <i class="fas fa-file-alt"></i>
+                        My Reports
+                    </a>
+                    <a href="user-profile.html#settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                    <hr>
+                    <a href="login/login.html" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-grid">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <img src="https://via.placeholder.com/150" alt="Profile" id="profileImage">
+                    <button class="change-photo-btn">
+                        <i class="fas fa-camera"></i> Change Photo
+                    </button>
+                    <input type="file" id="photoInput" hidden>
+                </div>
+                <div class="profile-info">
+                    <h2>shivam </h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</p>
+                    <p><i class="fas fa-envelope"></i> shivam.@example.com</p>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Reports</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Resolved</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="profile-main">
+                <div class="profile-tabs">
+                    <button class="tab-btn active">Reports</button>
+                    <button class="tab-btn">Settings</button>
+                    <button class="tab-btn">Notifications</button>
+                </div>
+
+                <!-- Reports Tab -->
+                <div class="tab-content" id="reportsTab">
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Road Pothole Issue</h3>
+                            <span class="report-status status-progress">In Progress</span>
+                        </div>
+                        <div class="report-content">
+                            <p>Large pothole causing traffic issues and potential hazards.</p>
+                            <div class="report-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Shivaji Nagar, Pune</span>
+                            </div>
+                            <div class="report-date">
+                                <i class="far fa-clock"></i>
+                                Reported on: Feb 20, 2024
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Street Light Malfunction</h3>
+                            <span class="report-status status-resolved">Resolved</span>
+                        </div>
+                        <div class="report-content">
+                            <p>Street light not working during night hours.</p>
+                            <div class="report-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Narhe, Pune</span>
+                            </div>
+                            <div class="report-date">
+                                <i class="far fa-clock"></i>
+                                Reported on: Feb 15, 2024
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab (Initially Hidden) -->
+                <div class="tab-content" id="settingsTab" style="display: none;">
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" value="shivam">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="shivam.@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" value="+91 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" value="Pune, Maharashtra">
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding tab content
+                const tabId = btn.textContent.toLowerCase() + 'Tab';
+                tabContents.forEach(content => {
+                    content.style.display = content.id === tabId ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Profile Photo Change
+        const photoInput = document.getElementById('photoInput');
+        const profileImage = document.getElementById('profileImage');
+        const changePhotoBtn = document.querySelector('.change-photo-btn');
+
+        changePhotoBtn.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        // User dropdown functionality
+        const userAvatar = document.getElementById('userAvatar');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Toggle dropdown
+        userAvatar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target) && !userAvatar.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+
+        // Handle logout
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Clear user session
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userEmail');
+            // Redirect to login page
+            window.location.href = 'login/login.html';
+        });
+
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'login/login.html';
+            }
+        }
+
+        // Update user avatar if available
+        function updateUserAvatar() {
+            const userImage = localStorage.getItem('userImage');
+            if (userImage) {
+                userAvatar.src = userImage;
+            }
+        }
+
+        // Initialize
+        updateUserAvatar();
+    </script>
+</body>
+</html> 

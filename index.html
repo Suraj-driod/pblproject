@@ -17,17 +17,35 @@
         </a>
         <div class="nav-links">
             <a href="#">Home</a>
-             <a href="maintenance.html" class="button">How It Works</a>
-             <a href="maintenance.html" class="button">FAQ</a>
-             
-
-           
+            <a href="maintenance.html" class="button">How It Works</a>
+            <a href="help-desk.html" class="button">FAQ</a>
         </div>
-       
-
-        
-        <a href="../login/signup.html" class="signup-btn">Sign Up</a>
-        <a href="login/login.html" class="login-btn">Log in</a>
+        <div class="auth-buttons">
+            <a href="../login/signup.html" class="signup-btn">Sign Up</a>
+            <a href="login/login.html" class="login-btn">Log in</a>
+            <div class="user-menu">
+                <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="user-profile.html">
+                        <i class="fas fa-user"></i>
+                        My Profile
+                    </a>
+                    <a href="user-profile.html#reports">
+                        <i class="fas fa-file-alt"></i>
+                        My Reports
+                    </a>
+                    <a href="user-profile.html#settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                    <hr>
+                    <a href="login/login.html" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
     </nav>
     <div class="container">
         <div class="hero">
@@ -98,15 +116,18 @@
         </div>
         <div class="footer-section">
             <h3>Support Center</h3>
-            <a href="maintenance.html" class="button">Help Desk</a>
-            
+            <a href="help-desk.html" class="button">Help Desk</a>
         </div>
         <div class="footer-section">
             <h3>Connect with us</h3>
-            <a href="maintenance.html" class="button">Social Media</a>
+            <a href="https://www.instagram.com/" class="button">Social Media</a>
             <p><a href="https://www.instagram.com/">Instagram</a></p>
             <p><a href="https://www.x.com/">Twitter</a></p>
-            
+        </div>
+        <div class="footer-section">
+            <h3>Administration</h3>
+            <a href="admin-login.html" class="button admin-link">Government Portal</a>
+            <p><small>For authorized personnel only</small></p>
         </div>
     </footer>
     <script>
