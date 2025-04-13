@@ -39,12 +39,15 @@ body {
     display: flex;
     gap: 2rem;
     margin-right: auto;
+    margin-left: 4%;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
-    transition: color 0.3s ease;
+    color: var(--text-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
