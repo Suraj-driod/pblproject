@@ -438,46 +438,68 @@ footer {
 
 /* Get Location Button */
 .get-location-btn {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     position: absolute;
     bottom: 20px;
     right: 20px;
-    background: #333;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     z-index: 1000;
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .get-location-btn:hover {
-    background: #555;
-    transform: scale(1.05);
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
 }
 
 .get-location-btn svg {
-    width: 20px;
-    height: 20px;
-    color: white;
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
-/* Add loading state for the button */
+.get-location-btn svg path {
+    stroke: #1C274C;
+    transition: stroke 0.3s ease;
+}
+
+.get-location-btn:hover svg path {
+    stroke: #000000;
+}
+
+/* Remove rotation animation when loading */
 .get-location-btn.loading {
     background: #666;
     cursor: wait;
-}
-
-.get-location-btn.loading svg {
-    animation: spin 1s linear infinite;
 }
 
 /* Ensure button is visible on expanded map */
 .expanded-map .get-location-btn {
     bottom: 30px;
     right: 30px;
+}
+
+/* Specific width styles for street, area, and landmark input fields */
+.form-group input[type="text"]#street1,
+.form-group input[type="text"]#area1,
+.form-group input[type="text"]#landmark {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]#street1:focus,
+.form-group input[type="text"]#area1:focus,
+.form-group input[type="text"]#landmark:focus {
+    border-color: #666;
+    outline: none;
 }
