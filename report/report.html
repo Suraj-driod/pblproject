@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jansuvidha - Infrastructure Issue</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <header>
@@ -33,21 +37,7 @@
                         <option value="">-- Select an Issue --</option>
                         <option value="solid_waste">Solid Waste Management</option>
                         <option value="drainage">Drainage</option>
-                        <option value="storm_water">Storm Water Drain</option>
-                        <option value="roads_traffic">Roads and Traffic</option>
-                        <option value="factories">Factories</option>
-                        <option value="licence">Licence</option>
-                        <option value="water_supply">Water Supply</option>
-                        <option value="colony_officer">Colony Officer</option>
-                        <option value="pest_control">Pest Control</option>
-                        <option value="buildings">Buildings</option>
-                        <option value="repairs_property">Repairs to Municipal Property</option>
-                        <option value="health">Health</option>
-                        <option value="garden_tree">Garden & Tree</option>
                         <option value="encroachment">Encroachment</option>
-                        <option value="shops_establishment">Shops & Establishment</option>
-                        <option value="estate">Estate</option>
-                        <option value="school">School</option>
                         <option value="sewerage">Sewerage Operation Control (Western Suburb)</option>
                     </select>
                 </div>
@@ -62,14 +52,55 @@
                 </div>
 
                 <div class="location-box">
-                    <img src="image.png" alt="Location Image">
+                    <button class="expand-map-btn" id="expandMapBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                        Expand Map
+                    </button>
+                    <div id="map"></div>
+                    <button id="getLocationBtn" class="get-location-btn" title="Get My Location">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5 14.9585C12.3374 14.9858 12.1704 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12C15 12.1704 14.9858 12.3374 14.9585 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M2 12L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M20 12L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M12 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M12 22V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M8 5.07026C9.17669 4.38958 10.5429 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 10.5429 4.38958 9.17669 5.07026 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <input type="hidden" id="latitude" name="latitude">
+                    <input type="hidden" id="longitude" name="longitude">
                 </div>
+
+                <div class="map-overlay" id="mapOverlay">
+                    <div class="expanded-map">
+                        <button id="closeExpandedMap" class="close-expanded-map">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button id="expandedLocationBtn" class="get-location-btn" title="Get My Location">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5 14.9585C12.3374 14.9858 12.1704 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12C15 12.1704 14.9858 12.3374 14.9585 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M2 12L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M20 12L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M12 22V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8 5.07026C9.17669 4.38958 10.5429 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 10.5429 4.38958 9.17669 5.07026 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div id="expandedMap"></div>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label>Street 1 *</label>
+                    <label>Street  *</label>
                     <input type="text" id="street1" required>
                 </div>
                 <div class="form-group">
-                    <label>Area 1 *</label>
+                    <label>Area  *</label>
                     <input type="text" id="area1" required>
                 </div>
                 <div class="form-group">
@@ -90,8 +121,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Connection Code</label>
-                    <input type="text" id="connectionCode" disabled>
+                    <label>Pin Code</label>
+                    <input type="text" id="pinCode">
                 </div>
                 <div class="form-group">
                     <label>Select Name of Council</label>
