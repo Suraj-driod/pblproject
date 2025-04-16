@@ -220,6 +220,11 @@ body {
     transition: color 0.3s ease;
 }
 
+.footer-section p a:visited,
+.footer-section a:visited {
+    color: #000000;
+}
+
 .footer-section p a:hover,
 .footer-section a:hover {
     color: #666;
