@@ -17,8 +17,8 @@ A web-based platform designed to streamline the reporting and management of publ
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: [Specify backend technology, e.g., Node.js, Python Flask, etc.]
-- **Database**: [Specify database used, e.g., MySQL, MongoDB, etc.]
+- **Backend**: JavaScript
+- **Database**: Firebase Database
 - **Version Control**: Git & GitHub
 
 
