@@ -76,9 +76,6 @@ body {
     font-weight: bold;
     color: #333;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 .nav-links {
@@ -91,7 +88,7 @@ body {
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
-    padding: 0.5rem 1rem;
+    padding: auto;
     border-radius: 4px;
     transition: all 0.3s ease;
     position: relative;
@@ -546,12 +543,13 @@ body {
     /* border: 1px solid #000; */
     border-radius: 4px;
     transition: all 0.3s ease;
+    margin-left: -8%;
 }
 
-.admin-link:hover {
-    background: #000;
-    color: white;
-}
+/* .admin-link:hover {
+    background: #ede5e5;
+    color: rgb(106, 104, 104);
+} */
 
 .user-icon {
     width: 20px;
@@ -572,7 +570,6 @@ body {
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid #000;
-    object-fit: cover;
 }
 
 .user-dropdown {
