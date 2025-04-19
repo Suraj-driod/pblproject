@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Jansuvidha</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .logo-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .logo span {
+            color: #000000;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #0066ff;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            display: none;
+            min-width: 200px;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .user-dropdown a:hover {
+            background: #f5f5f5;
+        }
+
+        .user-dropdown hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 0.5rem 0;
+        }
+
+        /* Rest of the styles */
+        .legal-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .legal-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .legal-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .legal-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-section h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .legal-section p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .legal-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-section li {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            text-align: right;
+            color: #666;
+            font-style: italic;
+            margin-top: 3rem;
+        }
+
+        /* Remove blue color from links */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-nav-group">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 512 512"><path d="M331.8 224.1c28.29 0 54.88 10.99 74.86 30.97l19.59 19.59c40.01-17.74 71.25-53.3 81.62-96.65c5.725-23.92 5.34-47.08 .2148-68.4c-2.613-10.88-16.43-14.51-24.34-6.604l-68.9 68.9h-75.6V97.2l68.9-68.9c7.912-7.912 4.275-21.73-6.604-24.34c-21.32-5.125-44.48-5.51-68.4 .2148c-55.3 13.23-98.39 60.22-107.2 116.4C224.5 128.9 224.2 137 224.3 145l82.78 82.86C315.2 225.1 323.5 224.1 331.8 224.1z"></path></svg>
+                <span>Jansuvidha</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../howitworks.html">How It Works</a>
+                <a href="../report/submit.html">Report Issue</a>
+                <a href="../status/track.html">Check Status</a>
+                <a href="../community/feed.html">Community</a>
+            </div>
+        </div>
+        <div class="user-menu">
+            <img src="../files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+            <div class="user-dropdown" id="userDropdown">
+                <a href="../user-profile.html">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+                <a href="../user-profile.html#reports">
+                    <i class="fas fa-file-alt"></i>
+                    My Reports
+                </a>
+                <a href="../user-profile.html#settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+                <hr>
+                <a href="../login/login.html" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        <div class="legal-header">
+            <h1>Terms & Conditions</h1>
+            <p>Please read these terms and conditions carefully before using our service.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Acceptance of Terms</h2>
+            <p>By accessing and using Jansuvidha, you accept and agree to be bound by the terms and conditions outlined here. If you do not agree to these terms, please do not use our service.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>User Responsibilities</h2>
+            <p>When using our platform, you agree to:</p>
+            <ul>
+                <li>Provide accurate and truthful information in reports</li>
+                <li>Not submit false or misleading reports</li>
+                <li>Respect the privacy and rights of others</li>
+                <li>Not use the service for any illegal purposes</li>
+                <li>Maintain the confidentiality of your account credentials</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Content Guidelines</h2>
+            <p>When submitting reports or content, you must ensure:</p>
+            <ul>
+                <li>Content is accurate and relevant to infrastructure issues</li>
+                <li>Photos do not violate privacy rights or copyright laws</li>
+                <li>Descriptions are clear and free from offensive language</li>
+                <li>Location information is precise and verifiable</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Service Usage</h2>
+            <p>Jansuvidha reserves the right to:</p>
+            <ul>
+                <li>Modify or terminate services at any time</li>
+                <li>Remove inappropriate or violating content</li>
+                <li>Suspend or terminate accounts for violations</li>
+                <li>Update these terms and conditions as needed</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Intellectual Property</h2>
+            <p>All content and materials available on Jansuvidha, including but not limited to text, graphics, logos, button icons, images, and software, are the property of Jansuvidha or its content suppliers and are protected by applicable copyright laws.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Limitation of Liability</h2>
+            <p>Jansuvidha and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from:</p>
+            <ul>
+                <li>Use or inability to use the service</li>
+                <li>Unauthorized access to or alteration of data</li>
+                <li>Statements or conduct of any third party</li>
+                <li>Any other matter relating to the service</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Governing Law</h2>
+            <p>These terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Contact Information</h2>
+            <p>For any questions about these Terms & Conditions, please contact us at:</p>
+            <p>Email: legal@jansuvidha.com<br>
+            Phone: +91 XXX XXX XXXX</p>
+        </div>
+
+        <p class="last-updated">Last Updated: February 20, 2024</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Report : Jansuvidha</h3>
+            <p>Serving since 2025</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="../report/report.html">Report Now</a>
+            <a href="../status/status.html">Check Status</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-section">
+            <h3>Support Center</h3>
+            <a href="../help-desk.html">Help Desk</a>
+            <a href="../contact/contact.html">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h3>Connect with us</h3>
+            <a href="https://www.instagram.com/">Instagram</a>
+            <a href="https://www.x.com/">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        // User dropdown functionality
+        const userAvatar = document.getElementById('userAvatar');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        userAvatar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target) && !userAvatar.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userEmail');
+            window.location.href = '../login/login.html';
+        });
+    </script>
+</body>
+</html> 

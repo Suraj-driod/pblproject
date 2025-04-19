@@ -61,7 +61,14 @@
             border: 4px solid var(--primary-color);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
+        .user-avatar {
+            width: 40px;
+             height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #000;
+            object-fit: cover;
+        }
         .change-photo-btn {
             position: absolute;
             bottom: -10px;
@@ -258,8 +265,8 @@
 
         .user-menu {
             position: relative;
-            margin-left: auto;
             padding-left: 20px;
+            margin-left: auto;
         }
 
         .user-avatar {
@@ -327,48 +334,60 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        .logo-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             align-items: center;
+            margin-left: 0;
+        }
+
+        .logo {
+            margin-right: 3rem;
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">
-            <svg viewBox="0 0 512 512"><!-- Your existing logo SVG --></svg>
-            <span>Jansuvidha</span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="report/report.html">Report Issue</a>
-            <a href="status/status.html">Check Status</a>
-            <a href="community/feed.html">Community</a>
-            
-            <!-- Add this user menu -->
-            <div class="user-menu">
-                <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
-                <div class="user-dropdown" id="userDropdown">
-                    <a href="user-profile.html">
-                        <i class="fas fa-user"></i>
-                        My Profile
-                    </a>
-                    <a href="user-profile.html#reports">
-                        <i class="fas fa-file-alt"></i>
-                        My Reports
-                    </a>
-                    <a href="user-profile.html#settings">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </a>
-                    <hr>
-                    <a href="login/login.html" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
-                </div>
+        <div class="logo-nav-group">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 512 512"><!-- Your existing logo SVG --></svg>
+                <span>Jansuvidha</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="report/report.html">Report Issue</a>
+                <a href="status/status.html">Check Status</a>
+                <a href="community/feed.html">Community</a>
+            </div>
+        </div>
+        <!-- User menu -->
+        <div class="user-menu">
+            <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+            <div class="user-dropdown" id="userDropdown">
+                <a href="user-profile.html">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+                <a href="user-profile.html#reports">
+                    <i class="fas fa-file-alt"></i>
+                    My Reports
+                </a>
+                <a href="user-profile.html#settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+                <hr>
+                <a href="login/login.html" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
             </div>
         </div>
     </nav>
@@ -378,7 +397,7 @@
             <!-- Sidebar -->
             <div class="profile-sidebar">
                 <div class="profile-avatar">
-                    <img src="https://via.placeholder.com/150" alt="Profile" id="profileImage">
+                    <img src="files/profile.jpeg" alt="Profile" id="profileImage">
                     <button class="change-photo-btn">
                         <i class="fas fa-camera"></i> Change Photo
                     </button>

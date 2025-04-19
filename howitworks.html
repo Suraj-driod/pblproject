@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Jansuvidha</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .process-section {
+            margin: 4rem 0;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .process-card i {
+            font-size: 2.5rem;
+            color: #2196F3;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .process-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .features-section {
+            margin: 4rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #2196F3;
+        }
+
+        .feature-content h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .feature-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Navbar styles */
+        .nav-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .logo span {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-nav-group">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 512 512"><path d="M331.8 224.1c28.29 0 54.88 10.99 74.86 30.97l19.59 19.59c40.01-17.74 71.25-53.3 81.62-96.65c5.725-23.92 5.34-47.08 .2148-68.4c-2.613-10.88-16.43-14.51-24.34-6.604l-68.9 68.9h-75.6V97.2l68.9-68.9c7.912-7.912 4.275-21.73-6.604-24.34c-21.32-5.125-44.48-5.51-68.4 .2148c-55.3 13.23-98.39 60.22-107.2 116.4C224.5 128.9 224.2 137 224.3 145l82.78 82.86C315.2 225.1 323.5 224.1 331.8 224.1z"></path></svg>
+                <span>Jansuvidha</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="howitworks.html" class="active">How It Works</a>
+                <a href="report/report.html">Report Issue</a>
+                <a href="status/status.html">Check Status</a>
+                <a href="community/feed.html">Community</a>
+            </div>
+        </div>
+        <div class="user-menu">
+            <img src="files/userlogo.jpg" alt="User" class="user-avatar" id="userAvatar">
+            <div class="user-dropdown" id="userDropdown">
+                <a href="user-profile.html">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+                <a href="user-profile.html#reports">
+                    <i class="fas fa-file-alt"></i>
+                    My Reports
+                </a>
+                <a href="user-profile.html#settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+                <hr>
+                <a href="login/login.html" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="how-it-works-container">
+        <div class="section-header">
+            <h1>How Jansuvidha Works</h1>
+            <p>Learn how our platform helps connect citizens with local authorities to resolve infrastructure issues efficiently.</p>
+        </div>
+
+        <div class="process-section">
+            <div class="process-grid">
+                <div class="process-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>1. Report an Issue</h3>
+                    <p>Take a photo of the infrastructure issue and submit it through our platform with location details.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>2. Verification</h3>
+                    <p>Our team verifies the report and assigns it to the appropriate department for resolution.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>3. Resolution</h3>
+                    <p>The assigned department takes action to resolve the reported issue.</p>
+                </div>
+                <div class="process-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>4. Completion</h3>
+                    <p>Once resolved, you'll receive an update and can verify the solution.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="section-header">
+                <h1>Key Features</h1>
+                <p>Discover the tools and features that make Jansuvidha effective.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-map-marker-alt feature-icon"></i>
+                    <div class="feature-content">
+                        <h3>Location Tracking</h3>
+                        <p>Precise location mapping ensures accurate identification of issues.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <div class="feature-content">
+                        <h3>Real-time Updates</h3>
+                        <p>Track the status of your reported issues in real-time.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <div class="feature-content">
+                        <h3>Community Engagement</h3>
+                        <p>Connect with other citizens and support local initiatives.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <div class="feature-content">
+                        <h3>Progress Tracking</h3>
+                        <p>Monitor the progress of infrastructure improvements in your area.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Report : Jansuvidha</h3>
+            <p>Serving since 2025</p>
+        </div>
+        <div class="footer-section">
+            <h3>Community</h3>
+            <a href="./community/feed.html">Community Feed</a>
+            <a href="contact/contact.html">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h3>Support Center</h3>
+            <a href="help-desk.html">Help Desk</a>
+        </div>
+        <div class="footer-section">
+            <h3>Connect with us</h3>
+            <a href="https://www.instagram.com/">Instagram</a>
+            <p><a href="https://www.x.com/">Twitter</a></p>
+        </div>
+        <div class="footer-section">
+            <h3>Administration</h3>
+            <a href="admin-login.html" class="admin-link">Government Portal</a>
+            <p><small>For authorized personnel only</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // User dropdown functionality
+        const userAvatar = document.getElementById('userAvatar');
+        const userDropdown = document.getElementById('userDropdown');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        userAvatar.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userDropdown.contains(e.target) && !userAvatar.contains(e.target)) {
+                userDropdown.classList.remove('show');
+            }
+        });
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userEmail');
+            window.location.href = 'login/login.html';
+        });
+    </script>
+</body>
+</html> 
