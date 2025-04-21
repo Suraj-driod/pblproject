@@ -25,15 +25,19 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 5%;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: relative;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo-nav-group {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex: 1;
 }
 
 /* Add styles for sticky navbar */
@@ -48,7 +52,8 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     animation: slideDown 0.3s ease-in-out;
 }
 
@@ -76,6 +81,15 @@ body {
     font-weight: bold;
     color: #333;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-img {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -83,6 +97,8 @@ body {
     gap: 2rem;
     margin-left: 0;
     align-items: center;
+    justify-content: center;
+    flex: 2;
 }
 
 .nav-link {
@@ -98,6 +114,21 @@ body {
     color: #000;
 }
 
+.nav-link.active {
+    font-weight: 600;
+    color: #000;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    bottom: -5px;
+    left: 0;
+}
+
 .dropdown-toggle {
     cursor: pointer;
     display: flex;
@@ -110,17 +141,24 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     min-width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 8px;
     padding: 0.5rem 0;
     z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .nav-link:hover + .dropdown-menu,
 .dropdown-menu:hover {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .dropdown-menu a {
@@ -128,11 +166,14 @@ body {
     padding: 0.5rem 1rem;
     color: #333;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    margin: 0 0.3rem;
 }
 
 .dropdown-menu a:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
 }
 
 /* Add a small arrow at the top of dropdown */
@@ -143,7 +184,7 @@ body {
     left: 20px;
     width: 12px;
     height: 12px;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     transform: rotate(45deg);
     box-shadow: -2px -2px 4px rgba(0,0,0,0.05);
 }
@@ -153,39 +194,53 @@ body {
     align-items: center;
     gap: 1rem;
     margin-left: auto;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .signup-btn {
-    background: #000;
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 0.5rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .login-btn {
-    background: #000;
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 0.5rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .signup-btn:hover,
 .login-btn:hover {
-    background: #333;
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Hero section styles */
 .hero {
-    background: #e0e0e0;
-    padding: 4rem 5%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e0e0e0 100%);
+    padding: 6rem 5% 4rem;
+    margin-top: -80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 0 0 2rem 2rem;
+    position: relative;
+    z-index: -1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .hero-content {
@@ -410,22 +465,24 @@ body {
     .hero {
         flex-direction: column;
         text-align: center;
+        padding-top: 5rem;
+        margin-top: -60px;
     }
-
+    
     .camera-icon {
         margin-top: 2rem;
     }
-
+    
     .button-group {
         justify-content: center;
     }
-
+    
     .nav-links {
         display: none;
     }
-
+    
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 }
 /* Add these to your existing CSS file */
@@ -450,6 +507,13 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 8px;
+}
+
+.logo-img {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
 }
 
 .slideshow-container {
@@ -577,15 +641,18 @@ body {
     position: absolute;
     right: 0;
     top: calc(100% + 10px);
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
     border-radius: 8px;
     z-index: 1000;
     padding: 0.5rem 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    transform: translateY(10px);
 }
 
 /* Add padding to create hoverable area */
@@ -603,6 +670,7 @@ body {
     display: block;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 /* Keep dropdown visible when hovering over it */
@@ -610,6 +678,7 @@ body {
     display: block;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .user-dropdown::before {
@@ -619,7 +688,7 @@ body {
     right: 16px;
     width: 12px;
     height: 12px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     transform: rotate(45deg);
     box-shadow: -2px -2px 4px rgba(0,0,0,0.05);
 }
@@ -631,13 +700,15 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
     position: relative;
     z-index: 1;
+    border-radius: 4px;
+    margin: 0 0.3rem;
 }
 
 .user-dropdown a:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .user-dropdown hr {
@@ -914,6 +985,7 @@ body {
     .logo-nav-group {
         width: 100%;
         justify-content: space-between;
+        flex: none;
     }
 
     .mobile-menu-toggle {
@@ -926,10 +998,14 @@ body {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+        flex: none;
+        flex-direction: column;
     }
 
     .nav-links.active {
@@ -944,11 +1020,21 @@ body {
         text-align: left;
     }
 
-    .user-menu {
+    .auth-buttons {
+        display: none;
         margin-left: 0;
         margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid #eee;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        flex: none;
+        width: 100%;
+    }
+    
+    .auth-buttons.active {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
     }
 }
 
