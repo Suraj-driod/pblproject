@@ -1,0 +1,152 @@
+    <!-- Add reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script src="../js/notifications.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reportForm = document.getElementById('reportForm');
+            const submitButton = reportForm.querySelector('button[type="submit"]');
+            let isSubmitting = false;
+
+            // Form validation
+            function validateForm() {
+                const requiredFields = reportForm.querySelectorAll('[required]');
+                let isValid = true;
+
+                // Check CAPTCHA
+                const captchaResponse = grecaptcha.getResponse();
+                if (!captchaResponse) {
+                    isValid = false;
+                    notifications.error(
+                        'Verification Required',
+                        'Please complete the CAPTCHA verification',
+                        5000
+                    );
+                    return false;
+                }
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                        notifications.error(
+                            'Missing Information',
+                            `Please fill in the ${field.getAttribute('placeholder') || field.name}`,
+                            5000
+                        );
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+
+                // Validate image upload
+                const imageInput = reportForm.querySelector('input[type="file"]');
+                if (imageInput && imageInput.files.length === 0) {
+                    isValid = false;
+                    notifications.error(
+                        'Image Required',
+                        'Please upload an image of the issue',
+                        5000
+                    );
+                }
+
+                return isValid;
+            }
+
+            // Handle form submission
+            reportForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (isSubmitting) return;
+                
+                if (!validateForm()) return;
+
+                isSubmitting = true;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+
+                try {
+                    // Verify CAPTCHA with your backend
+                    const captchaResponse = grecaptcha.getResponse();
+                    // Add your backend verification here
+                    
+                    // Simulate API call (replace with actual API call)
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    notifications.success(
+                        'Report Submitted Successfully',
+                        'Your report has been received and is being processed. You can track its status in the "Check Status" section.',
+                        8000
+                    );
+                    
+                    // Clear form and reset CAPTCHA
+                    reportForm.reset();
+                    grecaptcha.reset();
+                    
+                    // Redirect to status page after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = '../status/track.html';
+                    }, 3000);
+                } catch (error) {
+                    notifications.error(
+                        'Submission Failed',
+                        'There was an error submitting your report. Please try again.',
+                        5000
+                    );
+                    grecaptcha.reset();
+                } finally {
+                    isSubmitting = false;
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Report';
+                }
+            });
+
+            // Add input validation
+            reportForm.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        this.classList.remove('error');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+        /* Add to your existing styles */
+        .error {
+            border-color: #EF4444 !important;
+        }
+
+        button[type="submit"]:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Add loading spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
+        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Report</button> 
